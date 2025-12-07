@@ -60,6 +60,15 @@ A powerful cyber-tech themed desktop utility that processes image sequences with
 ### Option 1: Use Pre-built App (macOS)
 Download the latest `Bitcoin File Utility-1.0.0-arm64.dmg` from releases.
 
+#### ⚠️ macOS Security Notice
+Since this app isn't code-signed with an Apple Developer certificate, macOS will show a security warning. To bypass this:
+
+1. **First method:** Right-click the app and select "Open" instead of double-clicking
+2. **If blocked:** Go to System Settings → Privacy & Security → click "Open Anyway"
+3. **Terminal method:** Run `xattr -cr "/Applications/Bitcoin File Utility.app"`
+
+This is a one-time setup. The app is safe and open source.
+
 ### Option 2: Build from Source
 
 #### Prerequisites
@@ -86,6 +95,11 @@ npm run build
 
 # The built app will be in the dist/ folder
 ```
+
+**Note:** The built app won't be code-signed. To sign it, you need:
+- An Apple Developer account ($99/year)
+- Configure electron-builder with your signing certificate
+- Or users can follow the security bypass instructions above
 
 ## 📊 File Processing Details
 

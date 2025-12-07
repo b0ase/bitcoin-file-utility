@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Utility</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="container">
+            <header>
+                <h1>File Utility</h1>
+                <p>Smart image & video renaming using original creation dates or color analysis</p>
+            </header>
+
+            <main>
+                <!-- Mode Toggle -->
+                <div class="mode-toggle">
+                    <h3>Processing Mode</h3>
+                    <div class="toggle-container">
+                        <label class="toggle-option">
+                            <input type="radio" name="mode" value="inplace" id="modeInplace" checked>
+                            <span class="toggle-label">
+                                <strong>In-Place Rename</strong>
+                                <small>Rename files in their current location (simpler & safer)</small>
+                            </span>
+                        </label>
+                        <label class="toggle-option">
+                            <input type="radio" name="mode" value="move" id="modeMove">
+                            <span class="toggle-label">
+                                <strong>Move to Folder</strong>
+                                <small>Move and rename files to a new destination folder</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Sorting Mode Toggle -->
+                <div class="sort-toggle">
+                    <h3>Sorting Method</h3>
+                    <div class="toggle-container">
+                        <label class="toggle-option">
+                            <input type="radio" name="sortBy" value="date" id="sortByDate" checked>
+                            <span class="toggle-label">
+                                <strong>Sort by Date</strong>
+                                <small>Use metadata/creation date (default)</small>
+                            </span>
+                        </label>
+                        <label class="toggle-option">
+                            <input type="radio" name="sortBy" value="color" id="sortByColor">
+                            <span class="toggle-label">
+                                <strong>Sort by Color</strong>
+                                <small>Arrange by dominant color (experimental)</small>
+                            </span>
+                        </label>
+                        <label class="toggle-option">
+                            <input type="radio" name="sortBy" value="bitcoin" id="sortByBitcoin">
+                            <span class="toggle-label">
+                                <strong>Bitcoin Address</strong>
+                                <small>Rename with Bitcoin address & private key file</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Sort into dated folders option -->
+                <div class="dated-folders-toggle">
+                    <h3>Folder Options</h3>
+                    <div class="toggle-container" style="display: flex; gap: 20px;">
+                        <label class="toggle-checkbox" style="flex: 1;">
+                            <input type="checkbox" id="sortIntoFoldersToggle">
+                            <span class="toggle-label">
+                                <strong>Sort into dated folders</strong>
+                                <small>Organize by date (YYYY-MM-DD)</small>
+                            </span>
+                        </label>
+                        <label class="toggle-checkbox" style="flex: 1;">
+                            <input type="checkbox" id="extractFoldersToggle">
+                            <span class="toggle-label">
+                                <strong>Extract folder contents</strong>
+                                <small>Move contents to parent directory</small>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div id="folderSelector" class="folder-selector hidden">
+                    <div class="folder-info">
+                        <h3>Select Destination Folder</h3>
+                        <p>Choose where to save your processed images</p>
+                    </div>
+                    <div class="folder-actions">
+                        <button id="selectFolderBtn" class="select-btn">Select Folder</button>
+                    </div>
+                    <div id="selectedFolder" class="selected-folder hidden">
+                        <p><span id="folderPath"></span></p>
+                        <button id="changeFolderBtn" class="change-btn">Change</button>
+                    </div>
+                </div>
+
+                <div id="dropZone" class="drop-zone disabled">
+                    <div class="drop-content">
+                        <div class="drop-icon">⬇</div>
+                        <h2>Drop Media Files Here</h2>
+                        <p>Images: JPG, PNG, GIF, BMP, TIFF, WEBP<br>Videos: MP4, MOV, AVI, MKV, WEBM, M4V, etc.</p>
+                        <div class="drop-note" id="dropNote">
+                            <p><strong>Note:</strong> Media files will be renamed by their original date in their current location. Duplicates will be moved to trash.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="processing" class="processing hidden">
+                    <h3>Processing Images</h3>
+                    <div class="spinner"></div>
+                    <p>Processing your media files...</p>
+                </div>
+
+                <div id="results" class="results hidden">
+                    <h3>Process Complete</h3>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="totalFiles">0</span>
+                            <span class="stat-label">Total Files</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="filesRenamed">0</span>
+                            <span class="stat-label">Files Renamed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="duplicatesMovedToTrash">0</span>
+                            <span class="stat-label">Duplicates Moved to Trash</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="errors">0</span>
+                            <span class="stat-label">Errors</span>
+                        </div>
+                    </div>
+                    <div id="errorList" class="error-list hidden">
+                        <h4>Errors Encountered:</h4>
+                        <div id="errorItems"></div>
+                    </div>
+                    <button id="resetBtn" class="reset-btn">Drop More Images (Auto-reset in 3s)</button>
+                </div>
+            </main>
+
+            <footer>
+                <p>Media files are renamed using their <strong>original creation date from metadata</strong> or <strong>dominant color</strong><br>
+                Drop images/videos to rename and sort them by your selected criteria<br>
+                <small style="color: #aaa;">※ Video color sorting coming soon!</small></p>
+            </footer>
+        </div>
+
+        <!-- Terminal Viewer -->
+        <div class="terminal-viewer">
+            <div class="terminal-header">
+                <h3>📟 Terminal Output</h3>
+                <button id="clearTerminal" class="clear-btn">Clear</button>
+            </div>
+            <div class="terminal-content" id="terminalContent">
+                <div class="terminal-line">Welcome to Bitcoin File Utility v2.0</div>
+                <div class="terminal-line">Ready to process images...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

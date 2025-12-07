@@ -1,0 +1,42 @@
+# Node modules
+node_modules/
+
+# Build directories  
+dist/mac*/
+dist/win*/
+dist/linux*/
+dist/builder-*.yml
+
+# Keep DMG files for releases
+!dist/*.dmg
+!dist/*.dmg.blockmap
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build files
+build/
+
+# Temporary files
+*.tmp
+.temp/

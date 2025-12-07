@@ -1,0 +1,75 @@
+{
+  "name": "bitcoin-file-utility",
+  "version": "1.0.0",
+  "description": "Advanced file utility with Bitcoin address naming, SHA256 duplicate detection and cyber-tech interface",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build-mac": "electron-builder --mac",
+    "build-win": "electron-builder --win",
+    "build-linux": "electron-builder --linux"
+  },
+  "build": {
+    "appId": "com.bitcoin-file-utility.app",
+    "productName": "Bitcoin File Utility",
+    "asar": false,
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "renderer.js",
+      "index.html",
+      "styles.css",
+      "assets/",
+      "icon.png"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "build/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ],
+      "identity": null,
+      "entitlements": null,
+      "entitlementsInherit": null
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
+  "keywords": [
+    "image",
+    "renamer",
+    "sequence",
+    "duplicate",
+    "detection",
+    "sha256",
+    "cyber",
+    "tech"
+  ],
+  "author": "Bitcoin File Utility Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^22.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "dependencies": {
+    "bitcoinjs-lib": "^7.0.0",
+    "ecpair": "^3.0.0",
+    "exif-parser": "^0.1.12",
+    "node-vibrant": "^4.0.3",
+    "sharp": "^0.34.5",
+    "tiny-secp256k1": "^2.2.4",
+    "vibrant": "^0.0.1"
+  }
+}

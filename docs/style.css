@@ -2,13 +2,14 @@
     --primary-color: #f7931a;
     --secondary-color: #4a90e2;
     --accent-color: #27ae60;
-    --bg-light: #ffffff;
-    --bg-gray: #f8f9fa;
-    --text-dark: #2c3e50;
-    --text-gray: #6c757d;
-    --border-color: #dee2e6;
-    --shadow: 0 2px 4px rgba(0,0,0,0.1);
-    --shadow-hover: 0 4px 8px rgba(0,0,0,0.15);
+    --bg-dark: #000000;
+    --bg-darker: #0a0a0a;
+    --bg-card: #1a1a1a;
+    --text-white: #ffffff;
+    --text-gray: #b0b0b0;
+    --border-color: #333333;
+    --shadow: 0 2px 4px rgba(0,0,0,0.5);
+    --shadow-hover: 0 4px 8px rgba(0,0,0,0.7);
 }
 
 * {
@@ -19,8 +20,8 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: var(--bg-light);
-    color: var(--text-dark);
+    background: var(--bg-dark);
+    color: var(--text-white);
     line-height: 1.6;
 }
 
@@ -35,10 +36,11 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--bg-light);
+    background: var(--bg-darker);
     box-shadow: var(--shadow);
     z-index: 1000;
     padding: 1rem 0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .nav-content {
@@ -53,7 +55,7 @@ body {
     gap: 12px;
     font-size: 1.2rem;
     font-weight: 600;
-    color: var(--text-dark);
+    color: var(--text-white);
 }
 
 .logo-img {
@@ -80,7 +82,7 @@ body {
 /* Hero Section */
 .hero {
     padding: 120px 0 80px;
-    background: linear-gradient(135deg, #f7931a15 0%, #4a90e215 100%);
+    background: linear-gradient(135deg, #f7931a10 0%, #4a90e210 100%);
 }
 
 .hero-content {
@@ -92,7 +94,7 @@ body {
 .hero-content h1 {
     font-size: 3rem;
     font-weight: 700;
-    color: var(--text-dark);
+    color: var(--text-white);
     margin-bottom: 1rem;
 }
 
@@ -176,13 +178,13 @@ body {
 /* Features Section */
 .features {
     padding: 80px 0;
-    background: var(--bg-light);
+    background: var(--bg-darker);
 }
 
 .section-title {
     text-align: center;
     font-size: 2.5rem;
-    color: var(--text-dark);
+    color: var(--text-white);
     margin-bottom: 3rem;
     font-weight: 700;
 }
@@ -194,7 +196,7 @@ body {
 }
 
 .feature-card {
-    background: var(--bg-light);
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 2rem;
@@ -214,7 +216,7 @@ body {
 }
 
 .feature-card h3 {
-    color: var(--text-dark);
+    color: var(--text-white);
     margin-bottom: 1rem;
     font-size: 1.3rem;
     font-weight: 600;
@@ -228,7 +230,7 @@ body {
 /* Modes Section */
 .modes {
     padding: 80px 0;
-    background: var(--bg-gray);
+    background: var(--bg-dark);
 }
 
 .mode-cards {
@@ -239,12 +241,13 @@ body {
 }
 
 .mode-card {
-    background: var(--bg-light);
+    background: var(--bg-card);
     border-radius: 8px;
     padding: 2.5rem;
     text-align: center;
     box-shadow: var(--shadow);
     transition: all 0.3s;
+    border: 1px solid var(--border-color);
 }
 
 .mode-card:hover {
@@ -258,7 +261,7 @@ body {
 }
 
 .mode-card h3 {
-    color: var(--text-dark);
+    color: var(--text-white);
     margin-bottom: 1rem;
     font-size: 1.5rem;
     font-weight: 600;
@@ -272,7 +275,7 @@ body {
 /* Download Section */
 .download {
     padding: 80px 0;
-    background: var(--bg-light);
+    background: var(--bg-darker);
 }
 
 .download-content {
@@ -280,12 +283,13 @@ body {
 }
 
 .download-card {
-    background: var(--bg-gray);
+    background: var(--bg-card);
     border-radius: 12px;
     padding: 3rem;
     max-width: 600px;
     margin: 0 auto 3rem;
     box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .download-icon {
@@ -296,7 +300,7 @@ body {
 
 .download-card h3 {
     font-size: 1.8rem;
-    color: var(--text-dark);
+    color: var(--text-white);
     margin-bottom: 1rem;
     font-weight: 600;
 }
@@ -311,10 +315,11 @@ body {
 
 .detail-item {
     padding: 5px 15px;
-    background: var(--bg-light);
+    background: var(--bg-darker);
     border-radius: 20px;
     font-size: 0.9rem;
     color: var(--text-gray);
+    border: 1px solid var(--border-color);
 }
 
 .btn-download {
@@ -343,16 +348,17 @@ body {
 }
 
 .installation {
-    background: var(--bg-gray);
+    background: var(--bg-card);
     border-radius: 8px;
     padding: 2rem;
     max-width: 600px;
     margin: 0 auto;
     text-align: left;
+    border: 1px solid var(--border-color);
 }
 
 .installation h3 {
-    color: var(--text-dark);
+    color: var(--text-white);
     margin-bottom: 1.5rem;
     font-weight: 600;
 }
@@ -390,7 +396,7 @@ body {
 /* Screenshots */
 .screenshots {
     padding: 80px 0;
-    background: var(--bg-gray);
+    background: var(--bg-dark);
 }
 
 .screenshot-grid {
@@ -400,10 +406,11 @@ body {
 }
 
 .screenshot-card {
-    background: var(--bg-light);
+    background: var(--bg-card);
     border-radius: 8px;
     overflow: hidden;
     box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .screenshot-placeholder {
@@ -411,7 +418,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f7931a10 0%, #4a90e210 100%);
+    background: linear-gradient(135deg, #f7931a05 0%, #4a90e205 100%);
     color: var(--text-gray);
     font-weight: 500;
 }
@@ -419,8 +426,9 @@ body {
 /* Footer */
 .footer {
     padding: 40px 0;
-    background: var(--text-dark);
+    background: var(--bg-darker);
     color: white;
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-content {

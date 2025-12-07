@@ -1,0 +1,6 @@
+{
+  "outputDirectory": "docs",
+  "buildCommand": "echo 'Using pre-built docs folder'",
+  "installCommand": "echo 'No install needed for static site'",
+  "framework": null
+}
